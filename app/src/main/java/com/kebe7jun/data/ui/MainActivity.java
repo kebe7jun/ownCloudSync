@@ -1,5 +1,8 @@
 package com.kebe7jun.data.ui;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +19,12 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FragmentTransaction fragmentTransaction;
+
+    //Fragments
+    private LocalPhotoFragment localPhotosFragment;
+    private WebViewFragment webViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        init();
+    }
+
+    private void init(){
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        localPhotosFragment = new LocalPhotoFragment();
+        fragmentTransaction.replace(R.id.fragment_view, localPhotosFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -80,12 +99,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_setting) {
-            // Handle the camera action
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        switch (id){
+            case R.id.nav_local:        //Local photos.
+                if(localPhotosFragment == null){
+                    localPhotosFragment = new LocalPhotoFragment();
+                }
+                fragmentTransaction.replace(R.id.fragment_view, localPhotosFragment);
+                fragmentTransaction.commit();
+                break;
+            case R.id.nav_web:      //To show webview.
+                if(webViewFragment == null){
+                    webViewFragment = new WebViewFragment();
+                }
+                fragmentTransaction.replace(R.id.fragment_view, webViewFragment);
+                fragmentTransaction.commit();
+                break;
+            case R.id.nav_setting:
+                // Handle the camera action
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
