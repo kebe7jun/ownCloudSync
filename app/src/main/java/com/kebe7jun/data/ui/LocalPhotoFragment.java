@@ -12,14 +12,16 @@ import android.view.ViewGroup;
  */
 public class LocalPhotoFragment extends Fragment {
 
-
     private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_local_photo, container, false);
+        if (view == null) {
+            this.view = inflater.inflate(R.layout.fragment_local_photo, container, false);
 
+
+        }
         return view;
     }
 }

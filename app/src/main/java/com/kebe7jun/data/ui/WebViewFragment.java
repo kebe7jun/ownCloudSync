@@ -38,20 +38,22 @@ public class WebViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (view == null) {
+            this.view = inflater.inflate(R.layout.fragment_web_view, container, false);
+            webView = (WebView) view.findViewById(R.id.webView);
 
-        this.view = inflater.inflate(R.layout.fragment_web_view, container, false);
-        webView = (WebView) view.findViewById(R.id.webView);
+            this.webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);     //Set javascript enable.
+            webSettings.setUserAgentString(ConstantCode.USER_AGENT);    //Set useragent of this App.
+            webSettings.setAllowFileAccess(true);       //Set can read file.
+            webSettings.setDomStorageEnabled(true);
 
-        this.webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);     //Set javascript enable.
-        webSettings.setUserAgentString(ConstantCode.USER_AGENT);    //Set useragent of this App.
-        webSettings.setAllowFileAccess(true);       //Set can read file.
-        webSettings.setDomStorageEnabled(true);
+            webView.addJavascriptInterface(new JavaScriptInterface(webView), ConstantCode.JS_OBJECT_NAME);
+            webView.setWebViewClient(new OwnCloudWebviewClient());
+            webView.loadUrl(ConstantCode.cloudUrl+"index.php/apps/files/");       //Init page
 
-        webView.addJavascriptInterface(new JavaScriptInterface(webView), ConstantCode.JS_OBJECT_NAME);
-        webView.setWebViewClient(new OwnCloudWebviewClient());
-        webView.loadUrl(ConstantCode.cloudUrl);       //Init page
-
+        }
         return view;
     }
+
 }

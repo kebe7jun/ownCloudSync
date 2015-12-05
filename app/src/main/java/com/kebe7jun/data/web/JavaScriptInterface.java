@@ -22,6 +22,11 @@ public class JavaScriptInterface {
 
     private WebView webView;
 
+    /**
+     * Had sent the login request?
+     */
+    private boolean isSendLogin = false;
+
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -30,7 +35,9 @@ public class JavaScriptInterface {
                 case ConstantCode.MSG_DO_LOGIN:
                     String postData = msg.getData().getString("postData");
                     try {
+//                        Log.d("Posting data to server", postData);
                         webView.postUrl(ConstantCode.cloudUrl, postData.getBytes("utf-8"));
+                        isSendLogin = true;
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -48,7 +55,8 @@ public class JavaScriptInterface {
     @JavascriptInterface
     public void showSource(String html){
         //On got html source code.
-        if (html.contains("name=\"user\"") && html.contains("name=\"password\"")){
+        if (!isSendLogin && html.contains("name=\"user\"") && html.contains("name=\"password\"") && !html.contains("class=\"warning\"")){
+            //If didn't sent login request and the source code include some words, do login.
             doLogin(html);
         }
     }

@@ -11,9 +11,14 @@ public class ConstantCode {
      * Setting value
      */
     public static String cloudUrl = "https://data.kebe7jun.com/";
-    public static String userName = "";     //From setting.
-    public static String password = "";     //From setting.
+    public static String userName = "test";     //From setting.
+    public static String password = "test";     //From setting.
     public static String photoUrl = "";
+
+    /**
+     * Cache photo path.
+     */
+    public static final String CACHE_PHOTO_PATH = "/sdcard/ownCloudSync/";
 
     /**
      * Only sync photo in wlan network.
