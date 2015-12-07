@@ -7,13 +7,6 @@ import com.kebe7jun.data.ui.BuildConfig;
  */
 public class ConstantCode {
 
-    /**
-     * Setting value
-     */
-    public static String cloudUrl = "https://data.kebe7jun.com/";
-    public static String userName = "test";     //From setting.
-    public static String password = "test";     //From setting.
-    public static String photoUrl = "";
 
     /**
      * Cache photo path.

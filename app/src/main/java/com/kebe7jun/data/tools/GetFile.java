@@ -53,6 +53,16 @@ public class GetFile {
     }
 
     /**
+     * Get all photos' name in local disk.
+     * @return
+     */
+    public static List<String> getAllLocalPhotosName(){
+        List<String> localPhotosList = new ArrayList<>();
+
+        return localPhotosList;
+    }
+
+    /**
      * Get all files from a dir.
      * If the dir not exists, create a new dir.
      * @return A list of string which include all of the files' name in the path gotten.
@@ -70,5 +80,4 @@ public class GetFile {
         }
         return fileList;
     }
-
 }

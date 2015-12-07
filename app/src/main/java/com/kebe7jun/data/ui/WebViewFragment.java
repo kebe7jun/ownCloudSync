@@ -16,6 +16,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.kebe7jun.data.code.ConstantCode;
+import com.kebe7jun.data.config.AppSetting;
 import com.kebe7jun.data.web.JavaScriptInterface;
 import com.kebe7jun.data.web.OwnCloudWebviewClient;
 
@@ -50,7 +51,7 @@ public class WebViewFragment extends Fragment {
 
             webView.addJavascriptInterface(new JavaScriptInterface(webView), ConstantCode.JS_OBJECT_NAME);
             webView.setWebViewClient(new OwnCloudWebviewClient());
-            webView.loadUrl(ConstantCode.cloudUrl+"index.php/apps/files/");       //Init page
+            webView.loadUrl(AppSetting.getOwnCloudHostUrl(view.getContext()));       //Init page
 
         }
         return view;

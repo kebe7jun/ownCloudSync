@@ -8,6 +8,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
 import com.kebe7jun.data.code.ConstantCode;
+import com.kebe7jun.data.config.AppSetting;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class JavaScriptInterface {
                     String postData = msg.getData().getString("postData");
                     try {
 //                        Log.d("Posting data to server", postData);
-                        webView.postUrl(ConstantCode.cloudUrl, postData.getBytes("utf-8"));
+                        webView.postUrl(AppSetting.getOwnCloudHostUrl(webView.getContext()), postData.getBytes("utf-8"));
                         isSendLogin = true;
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -73,8 +74,8 @@ public class JavaScriptInterface {
             requesttoken = str.substring(27, str.length()-1);
         }
         Log.d("requesttoken", requesttoken);
-        String postStr = "user="+ConstantCode.userName      // Build post data.
-                +"&password="+ConstantCode.password
+        String postStr = "user="+AppSetting.getOwnCloudUsername(webView.getContext())      // Build post data.
+                +"&password="+AppSetting.getOwnCloudPassword(webView.getContext())
                 +"&timezone-offset=8"
                 +"&timezone=Asia/Krasnoyarsk"
                 +"&requesttoken="+requesttoken;
