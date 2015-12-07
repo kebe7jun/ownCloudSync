@@ -7,17 +7,20 @@ import com.kebe7jun.data.ui.BuildConfig;
  */
 public class ConstantCode {
 
+    /**
+     * This var show how many photos will show on line.
+     */
+    public static final int COLS_EACH_LINE = 3;
+
+    /**
+     * The count of the thread pool to complete internet operator and get image.
+     */
+    public static final int INTERNET_THREADS_COUNT = 5;
 
     /**
      * Cache photo path.
      */
     public static final String CACHE_PHOTO_PATH = "/sdcard/ownCloudSync/";
-
-    /**
-     * Only sync photo in wlan network.
-     */
-    public static boolean isOnlySyncInWlan = true;
-
 
     /**
      * Final area.

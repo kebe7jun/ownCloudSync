@@ -114,6 +114,10 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_view, localPhotosFragment);
                 fragmentTransaction.commit();
                 break;
+            case R.id.nav_photos:
+
+
+                break;
             case R.id.nav_web:      //To show webview.
                 if(webViewFragment == null){
                     webViewFragment = new WebViewFragment();
@@ -122,13 +126,10 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.commit();
                 break;
             case R.id.nav_setting:
-                // Handle the camera action
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 break;
         }
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

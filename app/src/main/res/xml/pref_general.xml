@@ -30,23 +30,22 @@
         <!--android:positiveButtonText="@null"-->
         <!--android:title="@string/pref_title_add_friends_to_messages" />-->
 
-    <EditTextPreference
-        android:title="Host"
-        android:defaultValue="@string/owncloud_host_url_default"
-        android:key="@string/owncloud_host_url" />
+        <EditTextPreference
+            android:title="Host"
+            android:defaultValue="@string/owncloud_host_url_default"
+            android:key="@string/owncloud_host_url" />
 
-    <EditTextPreference
-        android:title="Sync photos dir"
-        android:defaultValue="@string/owncloud_sync_dir_default"
-        android:key="@string/owncloud_sync_dir" />
+        <EditTextPreference
+            android:title="Sync photos dir"
+            android:defaultValue="@string/owncloud_sync_dir_default"
+            android:key="@string/owncloud_sync_dir" />
 
-    <EditTextPreference
-        android:title="Username"
-        android:defaultValue="@string/owncloud_username_default"
-        android:key="@string/owncloud_username" />
-    <EditTextPreference
-        android:title="Password"
-        android:defaultValue="@string/owncloud_password_default"
-        android:key="@string/owncloud_password"/>
-
+        <EditTextPreference
+            android:title="Username"
+            android:defaultValue="@string/owncloud_username_default"
+            android:key="@string/owncloud_username" />
+        <EditTextPreference
+            android:title="Password"
+            android:defaultValue="@string/owncloud_password_default"
+            android:key="@string/owncloud_password"/>
 </PreferenceScreen>
