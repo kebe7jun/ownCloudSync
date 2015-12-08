@@ -16,7 +16,7 @@ public class InternetOperator {
     /**
      * Set the timeout of HTTP connection.
      */
-    private final int CONNECT_TIME_OUT = 5000;
+    private static final int CONNECT_TIME_OUT = 5000;
 
     /**
      * Download photo from gotten url and return a byte array.

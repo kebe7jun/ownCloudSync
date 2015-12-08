@@ -18,11 +18,6 @@ public class ConstantCode {
     public static final int INTERNET_THREADS_COUNT = 5;
 
     /**
-     * Cache photo path.
-     */
-    public static final String CACHE_PHOTO_PATH = "/sdcard/ownCloudSync/";
-
-    /**
      * Final area.
      */
     public static final String JS_OBJECT_NAME = "OwnCloudJSObj";

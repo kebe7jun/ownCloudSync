@@ -25,7 +25,7 @@ public class GetPhotoThreadPool {
      * @param url
      * @param getImageCallable
      */
-    public static void addWork(String url, GetImageCallable getImageCallable){
+    public static void getImage(String url, GetImageCallable getImageCallable){
         Runnable runnable = new GetPhotoThread(url, getImageCallable);
         executor.execute(runnable);
     }

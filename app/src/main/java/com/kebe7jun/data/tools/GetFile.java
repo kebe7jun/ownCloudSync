@@ -6,6 +6,7 @@ import com.kebe7jun.data.code.ConstantCode;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -19,6 +20,32 @@ import java.util.List;
 public class GetFile {
 
     /**
+     * Camera photo path.
+     */
+    private static final String CAMERA_PHOTOS_PATH = "/sdcard/DCIM/Camera/";
+
+    /**
+     * Cache photo path.
+     */
+    public static final String CACHE_PHOTO_PATH = "/sdcard/ownCloudSync/";
+
+    /**
+     * To get the path of the device save photo.
+     * @return
+     */
+    private static String getCameraPhotosPath(){
+        return CAMERA_PHOTOS_PATH;
+    }
+
+    /**
+     * Get cached photo path.
+     * @return
+     */
+    private static String getCachePhotoPath(){
+        return CACHE_PHOTO_PATH;
+    }
+
+    /**
      * Cache file to disk which gotten from internet.
      * @param url
      * @param data
@@ -29,7 +56,7 @@ public class GetFile {
             return;
         }
         String fileName = Tools.md5(url);
-        File file = new File(ConstantCode.CACHE_PHOTO_PATH+fileName);
+        File file = new File(getCachePhotoPath()+fileName);
         try {
             if (!file.exists()){
                 file.createNewFile();
@@ -49,7 +76,7 @@ public class GetFile {
      * @return A list of string which include all of the photos' name cached.
      */
     public static List<String> getAllCachedFilesName(){
-        return getAllFilesNameFromPath(ConstantCode.CACHE_PHOTO_PATH);
+        return getAllFilesNameFromPath(getCachePhotoPath());
     }
 
     /**
@@ -57,9 +84,20 @@ public class GetFile {
      * @return
      */
     public static List<String> getAllLocalPhotosName(){
-        List<String> localPhotosList = new ArrayList<>();
+        return getAllFilesNameFromPath(getCameraPhotosPath());
+    }
 
-        return localPhotosList;
+    /**
+     * Get a local photo.
+     * @param photoName
+     * @return
+     */
+    public static byte[] getLocalPhotoByName(String photoName){
+        return readPhoto(getCameraPhotosPath()+photoName);
+    }
+
+    public static byte[] getCachedPhotoByName(String photoName){
+        return readPhoto(getCachePhotoPath()+photoName);
     }
 
     /**
@@ -79,5 +117,25 @@ public class GetFile {
             fileList.add(file1.getName());       //Add the filename to hashset.
         }
         return fileList;
+    }
+
+    /**
+     * Read a photo to binary from given path.
+     * @param path
+     * @return
+     */
+    private static byte[] readPhoto(String path){
+        byte[] photo = null;
+        try {
+            File file = new File(path);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            photo = new byte[(int) file.length()];
+            fileInputStream.read(photo, 0, photo.length);
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+        return photo;
     }
 }

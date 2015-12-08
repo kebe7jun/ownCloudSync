@@ -1,5 +1,7 @@
 package com.kebe7jun.data.interfaces;
 
+import android.graphics.Bitmap;
+
 import java.util.concurrent.Callable;
 
 /**
@@ -7,6 +9,6 @@ import java.util.concurrent.Callable;
  */
 public interface GetImageCallable {
 
-    public void onGetImage(byte[] result);
+    public void onGetImage(Bitmap bitmap);
 
 }

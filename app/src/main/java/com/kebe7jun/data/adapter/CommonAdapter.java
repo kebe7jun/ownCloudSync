@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.kebe7jun.data.tools.CommonViewHolder;
-
 import java.util.List;
 
 /**

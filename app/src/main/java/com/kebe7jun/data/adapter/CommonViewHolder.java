@@ -1,4 +1,4 @@
-package com.kebe7jun.data.tools;
+package com.kebe7jun.data.adapter;
 
 import android.app.Activity;
 import android.util.SparseArray;
@@ -48,4 +48,7 @@ public class CommonViewHolder {
         return convertView;
     }
 
+    public int getPosition(){
+        return position;
+    }
 }
