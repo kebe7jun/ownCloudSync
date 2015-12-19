@@ -27,6 +27,9 @@ public class ConstantCode {
      */
     public static final int MSG_DO_LOGIN = 0x0001;
 
+    public static final int GET_IMAGE_SUCCESS = 0x0002; //Get photo success
+    public static final int GET_IMAGE_ERROR = 0x0a02;       //Get photo error.
+
     /**
      * WebView Setting.
      */

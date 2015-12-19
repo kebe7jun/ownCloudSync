@@ -30,9 +30,9 @@ public class LocalPhotoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         listView = (ListView)view.findViewById(R.id.localPhotoListView);
         List<String> photos = GetFile.getAllLocalPhotosName();
-        for (int i = 1; i<photos.size(); i++){
-            photos.remove(i);
-        }
+//        for (int i = 1; i<photos.size(); i++){
+//            photos.remove(i);
+//        }
         adapter = new LocalPhotosShowAdapter(getActivity(), photos, R.layout.item_photo_row);
         listView.setAdapter(adapter);
     }

@@ -2,8 +2,10 @@ package com.kebe7jun.data.thread;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.kebe7jun.data.interfaces.GetImageCallable;
+import com.kebe7jun.data.tools.BitmapUtils;
 import com.kebe7jun.data.tools.GetFile;
 import com.kebe7jun.data.tools.InternetOperator;
 import com.kebe7jun.data.tools.Tools;
@@ -22,6 +24,7 @@ public class GetPhotoThread implements Runnable {
 
     @Override
     public void run() {
+        Log.d("Gotten photo from", url);
         if (url.indexOf("http") == 0) {     //The url is a internet url.
             byte[] result = InternetOperator.getPhotoFomInternet(url);
             try {
@@ -32,7 +35,7 @@ public class GetPhotoThread implements Runnable {
         }
         else{
             byte[] photo = GetFile.getLocalPhotoByName(url);
-            Bitmap bm = Tools.resizeImage(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+            Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 20, 200);
             getImageCallable.onGetImage(bm);
         }
     }

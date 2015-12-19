@@ -27,6 +27,7 @@ public class LocalPhotosShowAdapter extends CommonAdapter<String> {
     @Override
     public void setConverView(CommonViewHolder myViewHolder, String s) {
         PhotoView photoView1 = (PhotoView)myViewHolder.getConvertView().findViewById(R.id.imageView1);
+        photoView1.setImageResource(R.mipmap.ic_launcher);
         photoView1.setPhotoLocal(s);
     }
 }
