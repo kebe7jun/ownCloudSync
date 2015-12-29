@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.kebe7jun.data.code.ConstantCode;
+import com.kebe7jun.data.config.AppSetting;
 import com.kebe7jun.data.interfaces.GetImageCallable;
 import com.kebe7jun.data.thread.GetPhotoThreadPool;
 import com.kebe7jun.data.tools.GetFile;

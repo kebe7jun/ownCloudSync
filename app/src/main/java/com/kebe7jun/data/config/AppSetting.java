@@ -5,11 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 
-import com.kebe7jun.data.tools.GetFile;
 import com.kebe7jun.data.ui.R;
 
-import java.util.List;
 
 /**
  * Created by kebe on 15-12-7.
@@ -17,10 +16,9 @@ import java.util.List;
 public class AppSetting {
 
     /**
-     * Screen width(px).
+     * Screen size params.
      */
-    private static int deviceScreenWidth = 1080;
-    private static int deviceScreenHeight = 1920;
+    private static ViewGroup.LayoutParams deviceScreenParams;
 
 
     /**
@@ -31,8 +29,23 @@ public class AppSetting {
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
-        setDeviceScreenWidth(width);
-        setDeviceScreenHeight(height);
+        setDeviceScreenParams(new ViewGroup.LayoutParams(width, height));
+    }
+
+    /**
+     * Set screen size params.
+     * @param params
+     */
+    public static void setDeviceScreenParams(ViewGroup.LayoutParams params){
+        deviceScreenParams = new ViewGroup.LayoutParams(params.width, params.height);
+    }
+
+    /**
+     * Get screen size params.
+     * @return
+     */
+    public static ViewGroup.LayoutParams getDeviceScreenParams(){
+        return deviceScreenParams;
     }
 
     /**
@@ -40,15 +53,7 @@ public class AppSetting {
      * @return
      */
     public static int getDeviceScreenWidth() {
-        return deviceScreenWidth;
-    }
-
-    /**
-     * Set screen width
-     * @param deviceScreenWidth
-     */
-    public static void setDeviceScreenWidth(int deviceScreenWidth) {
-        AppSetting.deviceScreenWidth = deviceScreenWidth;
+        return deviceScreenParams.width;
     }
 
     /**
@@ -56,16 +61,9 @@ public class AppSetting {
      * @return
      */
     public static int getDeviceScreenHeight() {
-        return deviceScreenHeight;
+        return deviceScreenParams.height;
     }
 
-    /**
-     * Set screen height.
-     * @param deviceScreenHeight
-     */
-    public static void setDeviceScreenHeight(int deviceScreenHeight) {
-        AppSetting.deviceScreenHeight = deviceScreenHeight;
-    }
 
     /**
      * Get the username of ownCloud.

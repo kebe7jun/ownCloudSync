@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.kebe7jun.data.config.AppSetting;
 import com.kebe7jun.data.interfaces.GetImageCallable;
 import com.kebe7jun.data.tools.BitmapUtils;
 import com.kebe7jun.data.tools.GetFile;
@@ -36,7 +37,7 @@ public class GetPhotoThread implements Runnable {
         }
         else{
             byte[] photo = GetFile.getLocalPhotoByName(url);
-            Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 150, 150);
+            Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 200, 200);
             getImageCallable.onGetImage(bm);
         }
     }

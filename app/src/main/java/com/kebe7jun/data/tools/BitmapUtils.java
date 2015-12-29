@@ -50,6 +50,13 @@ public class BitmapUtils
         return bitmap;
     }
 
+    /**
+     * Calc in sample size.
+     * @param opts
+     * @param reqWidth
+     * @param reqHeight
+     * @return
+     */
     private static int cacluateInSampleSize(BitmapFactory.Options opts,
                                             int reqWidth, int reqHeight)
     {
