@@ -83,5 +83,4 @@ public class JavaScriptInterface {
         message.setData(b);
         handler.sendMessage(message);
     }
-
 }

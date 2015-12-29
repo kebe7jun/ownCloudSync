@@ -95,7 +95,7 @@ public class PhotoView extends ImageView implements GetImageCallable{
         else {
             msg.what = ConstantCode.GET_IMAGE_ERROR;
         }
-        handler.sendMessage(msg);
+        handler.sendMessage(msg);       //Call main thread to set bitmap
     }
 
     /**

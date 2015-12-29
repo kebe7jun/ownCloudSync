@@ -84,7 +84,18 @@ public class GetFile {
      * @return
      */
     public static List<String> getAllLocalPhotosName(){
-        return getAllFilesNameFromPath(getCameraPhotosPath());
+        List<String> fileNameList = getAllFilesNameFromPath(getCameraPhotosPath());
+        List<String> toBeReturnList = new ArrayList<>();
+        for (String fileName : fileNameList){   //Check the file is a photo
+            String lastFix = fileName.substring(fileName.length()-4, fileName.length()).toLowerCase();
+            if (lastFix.compareTo(".jpg") == 0){
+                toBeReturnList.add(fileName);
+            }
+            else {
+                Log.w("Local FIle", fileName+" is not a pic.");
+            }
+        }
+        return toBeReturnList;
     }
 
     /**
