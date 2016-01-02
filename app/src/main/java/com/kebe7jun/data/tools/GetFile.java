@@ -52,7 +52,7 @@ public class GetFile {
      */
     public static void cacheFileFromInternet(String url, byte[] data){
         if (url == null || data == null){
-            Log.e("cacheFileFromInternet error", "Gotten url or data is null");
+            Log.e("cacheFile error", "Gotten url or data is null");
             return;
         }
         String fileName = Tools.md5(url);
@@ -123,9 +123,14 @@ public class GetFile {
             file.mkdir();       //Create file
             return fileList;
         }
-        File[] files = file.listFiles();
-        for(File file1 : files){
-            fileList.add(file1.getName());       //Add the filename to hashset.
+        try {
+            File[] files = file.listFiles();
+            for(File file1 : files){
+                fileList.add(file1.getName());       //Add the filename to hashset.
+            }
+        }
+        catch (Exception e){
+
         }
         return fileList;
     }

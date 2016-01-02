@@ -1,12 +1,16 @@
 package com.kebe7jun.data.ui;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -57,7 +61,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        init();
+        //Request permissions.
+        requestPermissions();
+
     }
 
     /**
@@ -139,4 +145,47 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Request permission on android M.
+     */
+    private void requestPermissions(){
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (checkPermissions(grantResults)){
+            init();
+        }
+        else {
+            //If no permission, do some things.
+        }
+    }
+
+    /**
+     * Check permissions had been grant.
+     * @param grantResults
+     * @return
+     */
+    private boolean checkPermissions(int[] grantResults){
+        if (grantResults.length<0)
+            return false;
+        for(int permission: grantResults){
+            if (permission != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
+    }
 }
