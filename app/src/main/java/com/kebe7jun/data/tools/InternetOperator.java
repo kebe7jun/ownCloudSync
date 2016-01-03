@@ -1,6 +1,10 @@
 package com.kebe7jun.data.tools;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.kebe7jun.data.object.OWFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,6 +22,10 @@ public class InternetOperator {
      */
     private static final int CONNECT_TIME_OUT = 5000;
 
+//    public static byte[] getPhotoPreview(OWFile owFile, Context context){
+//        //Example url: https://data.kebe7jun.com/index.php/core/preview.png?file=%2FPhotos%2FParis.jpg&c=b54d82b672f85eaa76c6224c67cb8c28&x=32&y=32&forceIcon=0
+//
+//    }
     /**
      * Download photo from gotten url and return a byte array.
      * @param url
@@ -40,13 +48,12 @@ public class InternetOperator {
 
             while ( is.read(b) != -1)
                 baos.write(b);
-
             con.disconnect();
         }
         catch(Throwable t) {
             t.printStackTrace();
         }
-
         return baos.toByteArray();
     }
+
 }

@@ -120,7 +120,7 @@ public class GetFile {
         List<String> fileList = new ArrayList<>();
         File file = new File(path);
         if (!file.exists()){        //Dir not exists.
-            file.mkdir();       //Create file
+            file.mkdir();       //Create dir.
             return fileList;
         }
         try {
@@ -130,9 +130,9 @@ public class GetFile {
             }
         }
         catch (Exception e){
-
+            //If dir not exists, or this app don't have permission to access the file.
         }
-        return fileList;
+        return fileList;        //Return fileList anyway.
     }
 
     /**
