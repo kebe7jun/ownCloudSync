@@ -26,13 +26,13 @@ public class GetPhotoThread implements Runnable {
 
     @Override
     public void run() {
-        Log.d("Gotten photo from", url);
         if (url.indexOf("http") == 0) {     //The url is a internet url.
             byte[] result = InternetOperator.getPhotoFomInternet(url);
             try {
-                getImageCallable.onGetImage(null);
+                Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(result, 200, 200);
+                getImageCallable.onGetImage(bm);
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
         }
         else{
@@ -40,5 +40,6 @@ public class GetPhotoThread implements Runnable {
             Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 200, 200);
             getImageCallable.onGetImage(bm);
         }
+        Log.d("Gotten photo from", url);
     }
 }

@@ -47,6 +47,23 @@ public class BitmapUtils
         opts.inSampleSize = inSampleSize;
         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length,
                 opts);
+        return cutBitmapToSquare(bitmap);
+    }
+
+    /**
+     * Cut a bitmap to a a square picture in center.
+     * @param bitmap
+     * @return
+     */
+    private static Bitmap cutBitmapToSquare(Bitmap bitmap){
+        int w = bitmap.getWidth();
+        int h = bitmap.getHeight();
+        if (w>h){
+            bitmap = Bitmap.createBitmap(bitmap, (w-h)/2, 0, h, h, null, false);
+        }
+        else {
+            bitmap = Bitmap.createBitmap(bitmap, 0, (h-w)/2, w, w, null, false);
+        }
         return bitmap;
     }
 
