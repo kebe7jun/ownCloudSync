@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     //Fragments
     private LocalPhotoFragment localPhotosFragment;
     private WebViewFragment webViewFragment;
+    private AllPhotoFragment allPhotoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,9 +124,12 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_view, localPhotosFragment);
                 fragmentTransaction.commit();
                 break;
-            case R.id.nav_photos:
-
-
+            case R.id.nav_photos:       //All photos.
+                if(allPhotoFragment == null){
+                    allPhotoFragment = new AllPhotoFragment();
+                }
+                fragmentTransaction.replace(R.id.fragment_view, allPhotoFragment);
+                fragmentTransaction.commit();
                 break;
             case R.id.nav_web:      //To show webview.
                 if(webViewFragment == null){

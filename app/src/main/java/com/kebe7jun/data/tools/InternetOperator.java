@@ -15,7 +15,7 @@ import java.net.URL;
 /**
  * Created by kebe on 15-12-5.
  */
-public class InternetOperator {
+public class   InternetOperator {
 
     /**
      * Set the timeout of HTTP connection.
@@ -55,5 +55,4 @@ public class InternetOperator {
         }
         return baos.toByteArray();
     }
-
 }
