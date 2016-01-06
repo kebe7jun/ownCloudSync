@@ -35,21 +35,27 @@ public class LocalPhotosShowAdapter extends CommonAdapter<String> {
      */
     @Override
     public void setConverView(CommonViewHolder myViewHolder, String s) {
+        //The first photo in the line.
         PhotoView photoView1 = (PhotoView)myViewHolder.getConvertView().findViewById(R.id.imageView1);
-        photoView1.setImageResource(R.mipmap.ic_launcher);
-        photoView1.setPhotoLocal(data.get(myViewHolder.getPosition()*3));
-        photoView1.setLayoutParams(new android.widget.LinearLayout.LayoutParams(AppSetting.getDeviceScreenWidth()/3-10, AppSetting.getDeviceScreenWidth()/3));
+        photoView1.setImageResource(R.mipmap.ic_launcher);      //Set default icon.
+        photoView1.setPhotoUrl(data.get(myViewHolder.getPosition()*3));
+//        photoView1.setImageImternetSourceUrl("https://blog.kebe7jun.com/wp-content/uploads/2015/01/QQ%E6%88%AA%E5%9B%BE20150130232610.png");
+        photoView1.setViewStyle();
+
+        //The second photo...
         if (myViewHolder.getPosition()*3+1<data.size()) {
             PhotoView photoView2 = (PhotoView) myViewHolder.getConvertView().findViewById(R.id.imageView2);
             photoView2.setImageResource(R.mipmap.ic_launcher);
-            photoView2.setPhotoLocal(data.get(myViewHolder.getPosition()*3+1));
-            photoView2.setLayoutParams(new android.widget.LinearLayout.LayoutParams(AppSetting.getDeviceScreenWidth()/3-10, AppSetting.getDeviceScreenWidth()/3));
+            photoView2.setPhotoUrl(data.get(myViewHolder.getPosition()*3+1));
+            photoView2.setViewStyle();
         }
+
+        //No need I say, you must know...
         if (myViewHolder.getPosition()*3+2<data.size()) {
             PhotoView photoView3 = (PhotoView) myViewHolder.getConvertView().findViewById(R.id.imageView3);
             photoView3.setImageResource(R.mipmap.ic_launcher);
-            photoView3.setPhotoLocal(data.get(myViewHolder.getPosition()*3+2));
-            photoView3.setLayoutParams(new android.widget.LinearLayout.LayoutParams(AppSetting.getDeviceScreenWidth()/3-10, AppSetting.getDeviceScreenWidth()/3));
+            photoView3.setPhotoUrl(data.get(myViewHolder.getPosition()*3+2));
+            photoView3.setViewStyle();
         }
     }
 }
