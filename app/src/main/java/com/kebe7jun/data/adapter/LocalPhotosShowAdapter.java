@@ -39,7 +39,7 @@ public class LocalPhotosShowAdapter extends CommonAdapter<String> {
         PhotoView photoView1 = (PhotoView)myViewHolder.getConvertView().findViewById(R.id.imageView1);
         photoView1.setImageResource(R.mipmap.ic_launcher);      //Set default icon.
         photoView1.setPhotoUrl(data.get(myViewHolder.getPosition()*3));
-//        photoView1.setImageImternetSourceUrl("http://mat1.gtimg.com/www/images/qq2012/qqlogo_1x.png");
+//        photoView1.setImageImternetSourceUrl("https://blog.kebe7jun.com/wp-content/uploads/2015/01/QQ%E6%88%AA%E5%9B%BE20150130232610.png");
         photoView1.setViewStyle();
 
         //The second photo...

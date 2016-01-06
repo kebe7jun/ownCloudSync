@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.kebe7jun.data.config.AppSetting;
 import com.kebe7jun.data.interfaces.GetImageCallable;
+import com.kebe7jun.data.interfaces.WorkDoneCallback;
 import com.kebe7jun.data.tools.BitmapUtils;
 import com.kebe7jun.data.tools.GetFile;
 import com.kebe7jun.data.tools.InternetOperator;
@@ -17,11 +18,22 @@ import com.kebe7jun.data.tools.Tools;
  */
 public class GetPhotoThread implements Runnable {
 
+    /**
+     * The url to get.
+     */
     private String url;
+    /**
+     * Call UI thread.
+     */
     private GetImageCallable getImageCallable;
-    public GetPhotoThread(String url, GetImageCallable getImageCallable){
+    /**
+     * When this work done, tell thread pool.
+     */
+    private WorkDoneCallback workDoneCallback;
+    public GetPhotoThread(String url, GetImageCallable getImageCallable, WorkDoneCallback workDoneCallback){
         this.getImageCallable = getImageCallable;
         this.url = url;
+        this.workDoneCallback = workDoneCallback;
     }
 
     @Override
@@ -41,5 +53,6 @@ public class GetPhotoThread implements Runnable {
             getImageCallable.onGetImage(bm);
         }
         Log.d("Gotten photo from", url);
+        workDoneCallback.workDone(url);
     }
 }

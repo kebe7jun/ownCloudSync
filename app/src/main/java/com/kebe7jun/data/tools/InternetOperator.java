@@ -53,9 +53,10 @@ public class InternetOperator {
 
             InputStream is = con.getInputStream();
             byte[] b = new byte[1024];
-
-            while ( is.read(b) != -1)
-                baos.write(b);
+            int len;
+            while ( (len = is.read(b)) != -1)
+                baos.write(b, 0, len);
+            baos.flush();
             is.close();
             con.disconnect();
         }
