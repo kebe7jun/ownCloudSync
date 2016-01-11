@@ -42,6 +42,15 @@ public class GetFile {
      * @return
      */
     private static String getCachePhotoPath(){
+        try {
+            File file = new File(CACHE_PHOTO_PATH);
+            if (!file.exists()){
+                file.mkdir();       //Crate dir if not exists.
+            }
+        }
+        catch (Exception e){
+            Log.e("File Exception", e.getMessage());
+        }
         return CACHE_PHOTO_PATH;
     }
 
@@ -55,7 +64,7 @@ public class GetFile {
             Log.e("cacheFile error", "Gotten url or data is null");
             return;
         }
-        String fileName = Tools.md5(url);
+        String fileName = Tools.md5(url)+ConstantCode.SELF_MIME_TYPE_IMAGE;
         File file = new File(getCachePhotoPath()+fileName);
         try {
             if (!file.exists()){
@@ -107,8 +116,22 @@ public class GetFile {
         return readPhoto(getCameraPhotosPath()+photoName);
     }
 
-    public static byte[] getCachedPhotoByName(String photoName){
+    /**
+     * Get a local cached photo.
+     * @param photoName
+     * @return
+     */
+    public static byte[] getCachePhotoByName(String photoName){
         return readPhoto(getCachePhotoPath()+photoName);
+    }
+
+    /**
+     * Get cached photo.
+     * @param url
+     * @return
+     */
+    public static byte[] getCachedPhotoByUrl(String url){
+        return readPhoto(getCachePhotoPath()+Tools.md5(url)+ConstantCode.SELF_MIME_TYPE_IMAGE);
     }
 
     /**
@@ -136,7 +159,7 @@ public class GetFile {
     }
 
     /**
-     * Read a photo to binary from given path.
+     * Read a photo to binary array from given path.
      * @param path
      * @return
      */

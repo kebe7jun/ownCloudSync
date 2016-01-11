@@ -34,4 +34,10 @@ public class ConstantCode {
      * WebView Setting.
      */
     public static final String USER_AGENT = "ownCloudSync Client Android Version(" + BuildConfig.VERSION_NAME + ") --- KEBE";
+
+    /**
+     * Self MIME TYPE in this app.
+     * To have a good extends.
+     */
+    public static final String SELF_MIME_TYPE_IMAGE = ".pic";
 }

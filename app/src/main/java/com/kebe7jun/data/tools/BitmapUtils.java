@@ -40,7 +40,7 @@ public class BitmapUtils
                                                           int reqWidth, int reqHeight)
     {
         BitmapFactory.Options opts = new BitmapFactory.Options();
-        opts.inJustDecodeBounds = true;
+        opts.inJustDecodeBounds = true;     //Not load full bitmap.
         BitmapFactory.decodeByteArray(data, 0, data.length, opts);
         int inSampleSize = cacluateInSampleSize(opts, reqWidth, reqHeight);
         opts.inJustDecodeBounds = false;

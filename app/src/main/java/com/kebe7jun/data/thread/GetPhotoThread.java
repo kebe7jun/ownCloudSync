@@ -38,21 +38,35 @@ public class GetPhotoThread implements Runnable {
 
     @Override
     public void run() {
+        byte[] photo = null;
         if (url.indexOf("http") == 0) {     //The url is a internet url.
-            byte[] result = InternetOperator.getPhotoFomInternet(url);
-            try {
-                Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(result, 200, 200);
-                getImageCallable.onGetImage(bm);
-            } catch (Exception e) {
+            if ((photo = GetFile.getCachedPhotoByUrl(url)) == null) {
+                photo = InternetOperator.getPhotoFomInternet(url);
+                GetFile.cacheFileFromInternet(url, photo);     //Cache file to local cache.
+                try {
+                    Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 200, 200);
+                    getImageCallable.onGetImage(bm);
+                } catch (Exception e) {
 
+                }
+                Log.d("Photo gotten", "from "+url);
+            }
+            else {
+                try {
+                    Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 200, 200);
+                    getImageCallable.onGetImage(bm);
+                } catch (Exception e) {
+
+                }
+                Log.d("Photo gotten", "from cached file.");
             }
         }
         else{
-            byte[] photo = GetFile.getLocalPhotoByName(url);
+            photo = GetFile.getLocalPhotoByName(url);
             Bitmap bm = BitmapUtils.decodeSampledBitmapFromByteArray(photo, 200, 200);
             getImageCallable.onGetImage(bm);
+            Log.d("Photo gotten", "from local file.");
         }
-        Log.d("Gotten photo from", url);
         workDoneCallback.workDone(url);
     }
 }
