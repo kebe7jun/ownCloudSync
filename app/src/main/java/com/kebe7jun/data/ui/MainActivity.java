@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Request permission on android M.
+     * Request permission for android M.
      */
     private void requestPermissions(){
         // Here, check this app's permissions.
