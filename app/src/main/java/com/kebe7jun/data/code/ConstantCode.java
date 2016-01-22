@@ -7,15 +7,10 @@ import com.kebe7jun.data.ui.BuildConfig;
  */
 public class ConstantCode {
 
-    /**
-     * This var show how many photos will show on line.
-     */
-    public static final int COLS_EACH_LINE = 3;
-
-    /**
-     * The count of the thread pool to complete internet operator and get image.
-     */
-    public static final int INTERNET_THREADS_COUNT = 5;
+//    /**
+//     * This var show how many photos will show on line.
+//     */
+//    public static final int COLS_EACH_LINE = 3;
 
     /**
      * Final area.
