@@ -97,7 +97,7 @@ public class GetFile {
         List<String> toBeReturnList = new ArrayList<>();
         for (String fileName : fileNameList){   //Check the file is a photo
             String lastFix = fileName.substring(fileName.length()-4, fileName.length()).toLowerCase();
-            if (lastFix.compareTo(".jpg") == 0){
+            if (lastFix.compareTo(".jpg") == 0||lastFix.compareTo(".png") == 0){
                 toBeReturnList.add(fileName);
             }
             else {

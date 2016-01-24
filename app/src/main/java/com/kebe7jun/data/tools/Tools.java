@@ -31,29 +31,4 @@ public class Tools {
         }
         return null;
     }
-
-    /**
-     * Compression the image
-     * @param bitmap
-     * @return
-     */
-    public static Bitmap resizeImage(Bitmap bitmap) {
-
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-//        float scaleWidth = ((float) AppSetting.getDeviceScreenWidth()/ ConstantCode.COLS_EACH_LINE) / width;
-//        float scaleHeight = ((float) AppSetting.getDeviceScreenHeight()/ ConstantCode.COLS_EACH_LINE) / height;
-        float scaleWidth = ((float) 200) / width;
-        float scaleHeight = ((float) 200) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bitmap, 0, 0, width, height, matrix, false);
-        bitmap.recycle();
-        return resizedBitmap;
-    }
 }
